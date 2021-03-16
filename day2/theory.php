@@ -13,7 +13,11 @@
  <label for="">SURNAME<input name="surname" type="text"></label><br>
  <button name="action" value="add">SEND</button>
  </form>
+
+
  <a href="./theory_script.php?name=Авас&surname=Авасов">Меня зовут АВАС</a>
+
+
  <form action="./theory_script.php" method="POST">
  <h1>POST FORM</h1>
  <label for="">NAME1<input name="name[]" type="text"></label><br>
@@ -32,5 +36,13 @@
       </select><br>
  <button name="action" value="add">SEND</button>
  </form>   
+
+<?
+if (isset($_GET['error']))
+  print_r("ERROR!!!");
+$sql = new mysqli("localhost", "mysql", "mysql", "phplearn");
+$data = $sql->query("SELECT * FROM `test`")->fetch_all();
+var_dump($data);
+?>
 </body>
 </html>
