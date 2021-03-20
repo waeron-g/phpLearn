@@ -7,6 +7,7 @@
     <title>GET & POST</title>
 </head>
 <body>
+<h1>HEADER</h1>
  <form action="./theory_script.php" method="GET">
  <h1>GET FORM</h1>
  <label for="">NAME<input name="name" type="text"></label><br>
@@ -41,8 +42,9 @@
 if (isset($_GET['error']))
   print_r("ERROR!!!");
 $sql = new mysqli("localhost", "mysql", "mysql", "phplearn");
-$data = $sql->query("SELECT * FROM `test`")->fetch_all();
-var_dump($data);
+$data = $sql->query("SELECT * FROM `test`");
+$result = mysqli_fetch_all($data, MYSQLI_ASSOC);
+var_dump($result[1]['name']);
 ?>
 </body>
 </html>

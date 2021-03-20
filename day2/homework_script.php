@@ -2,6 +2,8 @@
 <?
 $name = $_GET['name'];
 $surname = $_GET['surname'];
+$error = "";
+
 if (empty ($name))
 {
     $name = "Не заполнено имя";
@@ -10,7 +12,8 @@ if (empty ($surname))
 {
     $surname = "Не заполнена фамилия";
 }
-echo "Имя :$name\nФамилия :$surname";
+echo "Имя :$name <br>Фамилия :$surname";
+
 
 $name1 = $_POST['name1'];
 $surname1 = $_POST['surname1'];
@@ -29,23 +32,27 @@ echo "Имя :$name1\nФамилия :$surname1\nВозраст :$age";
 if (!empty($_POST))
     {
     $names = [];
+    if ($_POST['name2'])
     foreach ($_POST['name2'] as $name2)
     {
         $names[] = $name2;
     }
     $surnames = [];
+    if ($_POST['surname2'])
     foreach ($_POST['surname2'] as $surname2)
     {
         $surnames[] = $surname2;
     }
+    $peoples = array();
     for ($i=0; $i < count($names) ; $i++)
     {
-    echo " $names[$i] $surnames[$i] "; 
+        $peoples[] = "$names[$i] $surnames[$i]";
     }
+    var_dump($peoples); 
     }
     else 
     {
-        header('Location: /day2/theory.php');
+        // header('Location: /day2/theory.php');
     }
 
 

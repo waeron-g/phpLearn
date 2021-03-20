@@ -15,7 +15,7 @@
  <button name="action" value="add">SEND</button>
  </form>
 
- <form action="./homework_script.php" method="GET">
+ <form action="" method="POST">
  <h1>Задание №2</h1>
  <label for="">NAME<input name="name" type="text"></label><br>
  <label for="">SURNAME<input name="surname" type="text"></label><br>
