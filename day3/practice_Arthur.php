@@ -21,7 +21,7 @@ $name_str = implode(" ", $name_array);
 echo "$name_str";
 echo "<br>";
 $istr = str_ireplace("и", "e", $name_str);
-$istr = str_ireplace("И", "e", $name_str);
+$istr = str_ireplace("И", "e", $istr);
 echo "$istr";
 echo "<br>";
 

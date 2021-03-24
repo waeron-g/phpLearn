@@ -41,7 +41,7 @@ if (($_GET['name'] || $_GET['surname']) && $_GET['action'] == "insert" && $_GET[
     $values= implode(", ", $values);
     if ($values)
     {
-        $sql->query("UPDATE `test` SET(". $values.") WHERE `id`=".$_GET['id']);
+        $sql->query("UPDATE `test` SET ".$values." WHERE `id`= ".$_GET['id']);
     }
     var_dump($sql->errno, $sql->error);
 }
@@ -62,7 +62,7 @@ if ($_GET['action'] == "read" && !$_GET['col'] && !$_GET['val'])
 //READ ONE DATA FROM TABLE
 if ($_GET['action'] == "read" && $_GET['col'] && $_GET['val'])
 {
-    $where = "WHERE `".$_GET['col']."`='".$_GET['val']."'";
+    $where = "WHERE `".$_GET['col']."`='".$_GET['val']."'"; // WHERE `column` = 'value'
     $data = $sql->query("SELECT * FROM `test` ". $where);
     $result = mysqli_fetch_all($data, MYSQLI_ASSOC);
     var_dump($sql->errno, $sql->error);
@@ -87,13 +87,13 @@ if ($_GET['action'] == "addcol")
 }
 if ($_GET['action'] == "delcol")
 {
-    $sql->query("ALTER TABLE `oc_scheme_categories` DELETE COLUMN `desc`");
+    $sql->query("ALTER TABLE `oc_scheme_categories` DROP COLUMN `desc`");
     var_dump($sql->errno, $sql->error);
 }
 //DELETE TABLE
 if ($_GET['action'] == "deltable")
 {
-    $sql->query("DELETE TABLE `oc_scheme_categories`");
+    $sql->query("DROP TABLE `oc_scheme_categories`");
     var_dump($sql->errno, $sql->error);
 }
 //CLEAR TABLE
@@ -104,8 +104,6 @@ if ($_GET["action"] == "trunctable")
 }
 //CLOSE CONNECTION
 $sql->close();
-
-
 
 /* Задание № 1
     Зарегестрироваться на сайте https://www.sql-ex.ru/ Выбрать внизу упражнения по SQL пункт SELECT (обучающий этап)

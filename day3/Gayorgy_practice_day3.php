@@ -10,7 +10,7 @@ echo "<h1>Задание 2</h1>";
 $stroka = implode(" ", $test_array);
 echo "$stroka<br>";
 $zamena = str_ireplace("и", "е",$stroka);
-$zamena = str_ireplace("И", "е",$stroka);
+$zamena = str_ireplace("И", "е",$zamena);
 echo "$zamena";
 echo "<h1>Задание 3</h1>";
 $explode = explode(" ", $zamena);
