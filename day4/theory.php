@@ -35,13 +35,13 @@ if (($_GET['name'] || $_GET['surname']) && $_GET['action'] == "insert" && $_GET[
 {
     $values = [];
     if ($_GET['name'])
-    $values[] = "`name`= '". $_GET['name']."'";
+    $values[] = "`name`= '". $_GET['name']."'"; // `name`= 'value'
     if ($_GET['surname'])
-    $values[] = "`surname`= '". $_GET['surname']."'";
-    $values= implode(", ", $values);
+    $values[] = "`surname`= '". $_GET['surname']."'"; // `surname` = 'value2'
+    $values= implode(", ", $values); // `name`= 'value', `surname` = 'value2'
     if ($values)
     {
-        $sql->query("UPDATE `test` SET ".$values." WHERE `id`= ".$_GET['id']);
+        $sql->query("UPDATE `test` SET ".$values." WHERE `id`= ".$_GET['id']); // UPDATE `test` SET  `name`= 'value', `surname` = 'value2' WHERE `id`= 2
     }
     var_dump($sql->errno, $sql->error);
 }
@@ -55,14 +55,14 @@ if ($_GET['action']=="delete" && $_GET['id'])
 if ($_GET['action'] == "read" && !$_GET['col'] && !$_GET['val'])
 {
     $data = $sql->query("SELECT * FROM `test`");
-    $result = mysqli_fetch_all($data, MYSQLI_ASSOC);
+    $result = mysqli_fetch_all($data, MYSQLI_ASSOC); //ассоциативный массив
     var_dump($sql->errno, $sql->error);
     var_dump($result);
 }
 //READ ONE DATA FROM TABLE
 if ($_GET['action'] == "read" && $_GET['col'] && $_GET['val'])
 {
-    $where = "WHERE `".$_GET['col']."`='".$_GET['val']."'"; // WHERE `column` = 'value'
+    $where = "WHERE `".$_GET['col']."`='".$_GET['val']."'"; // WHERE `column` = 'value' OR `column` = 'value2'
     $data = $sql->query("SELECT * FROM `test` ". $where);
     $result = mysqli_fetch_all($data, MYSQLI_ASSOC);
     var_dump($sql->errno, $sql->error);
@@ -104,7 +104,7 @@ if ($_GET["action"] == "trunctable")
 }
 //CLOSE CONNECTION
 $sql->close();
-
+unset($sql);
 /* Задание № 1
     Зарегестрироваться на сайте https://www.sql-ex.ru/ Выбрать внизу упражнения по SQL пункт SELECT (обучающий этап)
     после чего выполнить 5 заданий. 
