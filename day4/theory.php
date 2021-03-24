@@ -27,7 +27,7 @@ $sql = new mysqli($link, $login, $pass, $db);
 
 if ($_GET['name'] && $_GET['surname'] && $_GET['action'] == "add")
 {
-    $sql->query("INSET INTO `test` (`name`, `surname`) VALUES ('" .$_GET['name']. "', '".$_GET['surname']."')");
+    $sql->query("INSERT INTO `test` (`name`, `surname`) VALUES ('" .$_GET['name']. "', '".$_GET['surname']."')");
     var_dump($sql->errno, $sql->error);
 }
 //UPDATE DATA IN TABLE
