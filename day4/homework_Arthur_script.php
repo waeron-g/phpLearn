@@ -30,7 +30,10 @@ if ($_GET["cleandb"] == "create")
     header("Location: /day4/homework_Arthur.php");
 }
 
-if ($_GET['name'] && $_GET['surname'] && $_GET['comment'] && $_GET['action'] == "add")
+if ($_GET['action'] == "add")
+{
+
+if ($_GET['name'] && $_GET['surname'] && $_GET['comment'] )
 {
     $sql->query("INSERT INTO `visitorss` (`name`, `surname`, `comment`) VALUES ('" .$_GET['name']. "', '".$_GET['surname']."', '".$_GET['comment']."')");
     header("Location: /day4/homework_Arthur.php");
@@ -39,9 +42,10 @@ else
 {
     header("Location: /day4/homework_Arthur.php?error=1");
 }
+}
 
 if ($_GET['id'])
 {
-    $sql->query("DELETE FROM `visitorsss` WHERE `id`=".$_GET['id']);
+    $sql->query("DELETE FROM `visitorss` WHERE `id`=".$_GET['id']);
     header("Location: /day4/homework_Arthur.php");
 }

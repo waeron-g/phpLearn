@@ -9,13 +9,13 @@
 <body>
 <form action="./homework_Arthur_script.php" method="GET">
  <h1>Введите свои данные</h1>
- <label  for=""><input name="name" type="text" placeholder = "NAME"></label><br>
- <label for=""><input name="surname" type="text" placeholder = "SURNAME"></label><br>
- <label for=""><input name="comment" type="text" placeholder = "COMMENT"></label><br>
+ <label  for=""><input name="name" type="text" placeholder = "Имя"></label><br>
+ <label for=""><input name="surname" type="text" placeholder = "Фамилия"></label><br>
+ <label for=""><input name="comment" type="text" placeholder = "Комментарий"></label><br>
  <button name="action" value="add">Отправить комментарий</button><br>
- <button name="createdb" value="create">Создать базу данных</button>
- <button name="delitedbdb" value="create">Удалить базу данных</button>
- <button name="cleandb" value="create">Очистить базу данных</button>
+ <button name="createdb" value="create">Создать таблицу посетителей</button>
+ <button name="delitedbdb" value="create">Удалить таблицу посетителей</button>
+ <button name="cleandb" value="create">Очистить таблицу посетителей</button>
 <br>
 <?
 if ($_GET['error'])
@@ -30,14 +30,20 @@ $pass = "mysql";
 $db = "phplearn";
 
 $sql = new mysqli($link, $login, $pass, $db);
-
 $data = $sql->query("SELECT * FROM `visitorss`");
+if ($data)
+{
 $result = mysqli_fetch_all($data, MYSQLI_ASSOC);
+}
+else
+{
+    echo "Таблица не создана. Создайте таблицу";
+}
 echo "<br>";
 echo "<br>";
 echo "<br>";
 
-
+if ($result)
 foreach ($result as $row)
 {
     $id = $row['id'];
