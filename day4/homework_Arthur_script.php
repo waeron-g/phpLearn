@@ -44,8 +44,36 @@ else
 }
 }
 
-if ($_GET['id'])
+if ($_GET['action'] == "delete")
 {
     $sql->query("DELETE FROM `visitorss` WHERE `id`=".$_GET['id']);
     header("Location: /day4/homework_Arthur.php");
 }
+
+if ($_GET['id1'])
+{
+
+if ($_GET['name'] && $_GET['surname'] && $_GET['comment'])
+{
+    $values = [];
+    if ($_GET['name'])
+    $values[] = "`name`= '". $_GET['name']."'";
+    if ($_GET['surname'])
+    $values[] = "`surname`= '". $_GET['surname']."'"; 
+    if ($_GET['comment'])
+    $values[] = "`comment`= '". $_GET['comment']."'"; 
+    $values= implode(", ", $values);
+    if ($values)
+    {
+        $sql->query("UPDATE `visitorss` SET ".$values." WHERE `id`= ".$_GET['id1']);
+    }
+    header("Location: /day4/homework_Arthur.php");
+}
+else
+{
+    $id=$_GET['id1'];
+    header("Location: /day4/rename_script.php?id=$id");
+}
+}
+
+?>

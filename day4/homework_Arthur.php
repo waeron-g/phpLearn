@@ -12,11 +12,25 @@
  <label  for=""><input name="name" type="text" placeholder = "Имя"></label><br>
  <label for=""><input name="surname" type="text" placeholder = "Фамилия"></label><br>
  <label for=""><input name="comment" type="text" placeholder = "Комментарий"></label><br>
- <button name="action" value="add">Отправить комментарий</button><br>
- <button name="createdb" value="create">Создать таблицу посетителей</button>
- <button name="delitedbdb" value="create">Удалить таблицу посетителей</button>
- <button name="cleandb" value="create">Очистить таблицу посетителей</button>
-<br>
+ <button name="action" value="add">Отправить комментарий</button>
+ </form>
+
+ <br>
+ <a href="./homework_Arthur_script.php?createdb=create">Создать таблицу посетителей</a>
+ <br>
+ <a href="./homework_Arthur_script.php?delitedbdb=create">Удалить таблицу посетителей</a>
+ <br>
+ <a href="./homework_Arthur_script.php?cleandb=create">Очистить таблицу посетителей</a>
+ <br>
+
+ <form action="" method="GET">
+ <h2>Поиск по фамилии</h2>
+ <label  for=""><input name="fsurname" type="text" placeholder = "Введите фамилию"></label><br>
+ <button name="search" value="surname">Отфильтровать по фамилии</button>
+ </form>
+ <a href="./homework_Arthur.php">Очистить фильтрацию</a>
+
+ <h2>Комментарии посетителей</h2>
 <?
 if ($_GET['error'])
 {
@@ -30,33 +44,40 @@ $pass = "mysql";
 $db = "phplearn";
 
 $sql = new mysqli($link, $login, $pass, $db);
-$data = $sql->query("SELECT * FROM `visitorss`");
+
+if ($_GET['search'] == "surname")
+{
+    $where = "WHERE `surname`='".$_GET['fsurname']."'";
+    $data = $sql->query("SELECT * FROM `visitorss` ".$where);
+}
+else
+{
+    $data = $sql->query("SELECT * FROM `visitorss`");
+}
 if ($data)
 {
 $result = mysqli_fetch_all($data, MYSQLI_ASSOC);
 }
 else
 {
-    echo "Таблица не создана. Создайте таблицу";
+echo "Таблица не создана. Создайте таблицу";
 }
-echo "<br>";
-echo "<br>";
-echo "<br>";
+
 
 if ($result)
 foreach ($result as $row)
-{
-    $id = $row['id'];
-    $name = $row['name'];
-    $surname = $row['surname'];
-    $comment = $row['comment'];
-    echo "Имя: $name <br> Фамилия: $surname <br> Комментарий: $comment<br><a href='./homework_Arthur_script.php?id=$id'>Удалить запись</a> <br> <br>";
-}
+    {
+       $id = $row['id'];
+       $name = $row['name'];
+       $surname = $row['surname'];
+       $comment = $row['comment'];
+       echo "Имя: $name <br> Фамилия: $surname <br> Комментарий: $comment<br><a href='./homework_Arthur_script.php?id=$id&action=delete'>Удалить запись</a><br><a href='./rename_script.php?id=$id'>Редактировать запись</a> <br><br> <br>";
+    }
+
 
 $sql->close();
 
 
 ?>
- </form>
- </body>
+</body>
 </html>
