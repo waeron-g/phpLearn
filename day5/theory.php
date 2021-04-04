@@ -21,7 +21,7 @@ echo "<h1>FGETS</h1>";
 $read = fopen("./write_to_file.txt", "r"); // Открытие
 while ($line = fgets($read)) // Цикл, в котором идет запись строки в переменную $line, если она пуста, то цикл закончится
 {
-    var_dump($line); // Вывод строки
+    var_dump($line);
 }
 fclose($read); // закрытие файла
 
@@ -35,6 +35,8 @@ $json[] = json_decode ('{
     "OBJECT" : "WTF",
     "SECOND ATTR" : "COOL"
 }'); // Создаем объект JSON в виде строки и декодируем, после чего записываем в объект
+echo "<H1> ELEMENT OF JSON</H1>";
+var_dump($json[0]->group->code);
 $json = json_encode($json); // Раскодируем объект в строку
 var_dump($json);
 $json_write = fopen("./Json1.json", "w+"); // Открываем файл на запись
@@ -42,10 +44,13 @@ fwrite($json_write, $json); // Записываем JSON в массив
 fclose($json_write); // Закрываем
 $json = json_decode(file_get_contents("Json1.json")); // Выводим записанные данные
 var_dump($json);
-
+$site = file_get_contents("https://www.php.net/manual/ru/function.fopen.php");
+$site = mb_substr($site, mb_strpos($site, "<body") );
+$site = explode("<p>", $site);
+var_dump($site);
 
 
 /**
  * Задание: Использовать выполненое домашнее задание от 4 дня, при этом переписать работу с базами данных под работу с json файлом. 
- * Эти знания потом могут пригодиться при работе с различными API, которые предоставляют данные в данном формате
+ * Эти знания потом могут пригодиться при работе с различными API, которые предоставляют данные в данном формате. Фильтрацию по имени можно не делать.
  */
