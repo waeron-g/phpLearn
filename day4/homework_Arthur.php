@@ -16,6 +16,7 @@
  <button name="createdb" value="create">Создать базу данных</button>
  <button name="delitedbdb" value="create">Удалить базу данных</button>
  <button name="cleandb" value="create">Очистить базу данных</button>
+ </form>
 <br>
 <?
 if ($_GET['error'])
@@ -30,15 +31,18 @@ $pass = "mysql";
 $db = "phplearn";
 
 $sql = new mysqli($link, $login, $pass, $db);
-
-$data = $sql->query("SELECT * FROM `visitorss`");
+$query = "SELECT * FROM `visitorss`";
+if ($_GET['surname'])
+    $query =  $query."WHERE `surname` = '".$_GET['surname']."'";
+$data = $sql->query($query);
+if ($data)
 $result = mysqli_fetch_all($data, MYSQLI_ASSOC);
 echo "<br>";
 echo "<br>";
 echo "<br>";
 
-
-foreach ($result as $row)
+if ($result)
+foreach ($result as $key => $value)
 {
     $id = $row['id'];
     $name = $row['name'];
@@ -48,9 +52,7 @@ foreach ($result as $row)
 }
 
 $sql->close();
-
-
 ?>
- </form>
+
  </body>
 </html>

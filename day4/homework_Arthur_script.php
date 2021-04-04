@@ -35,13 +35,13 @@ if ($_GET['name'] && $_GET['surname'] && $_GET['comment'] && $_GET['action'] == 
     $sql->query("INSERT INTO `visitorss` (`name`, `surname`, `comment`) VALUES ('" .$_GET['name']. "', '".$_GET['surname']."', '".$_GET['comment']."')");
     header("Location: /day4/homework_Arthur.php");
 }
-else
+else if ($_GET['action'] == "add")
 {
     header("Location: /day4/homework_Arthur.php?error=1");
 }
 
 if ($_GET['id'])
 {
-    $sql->query("DELETE FROM `visitorsss` WHERE `id`=".$_GET['id']);
+    $sql->query("DELETE FROM `visitorss` WHERE `id`=".$_GET['id']);
     header("Location: /day4/homework_Arthur.php");
 }
