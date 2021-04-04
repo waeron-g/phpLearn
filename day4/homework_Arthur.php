@@ -77,10 +77,6 @@ foreach ($result as $row)
 
 $sql->close();
 ?>
-<<<<<<< HEAD
-</body>
-=======
 
- </body>
->>>>>>> cbfdee3f4c3c332613fb6d8492037d7c07cada9e
+</body>
 </html>

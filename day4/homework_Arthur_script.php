@@ -53,7 +53,7 @@ if ($_GET['action'] == "delete")
 if ($_GET['id1'])
 {
 
-if ($_GET['name'] && $_GET['surname'] && $_GET['comment'])
+if ($_GET['name'] || $_GET['surname'] || $_GET['comment'])
 {
     $values = [];
     if ($_GET['name'])
