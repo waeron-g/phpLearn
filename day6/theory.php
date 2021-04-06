@@ -2,6 +2,8 @@
 if ($_GET['clear_image'] == true)
 {
     unset ($_SESSION['image']); // удаляем из сесии путь к изображению
+    unset($_COOKIE['name']);
+    setcookie('name', null, -1, '/'); 
     header("Location: /day6/theory.php");
 }
 $logs = file_get_contents("theory_log.txt");?>
@@ -16,19 +18,20 @@ $logs = file_get_contents("theory_log.txt");?>
 <body>
 <h1> ПРИВЕТ <?=$_COOKIE['surname']?> <?=$_COOKIE['name']?></h1>
 <p> your unique ID is : <?=$_COOKIE['PHPSESSID']?></p>
+<?php $image = (file_exists($_SESSION['image']))? $_SESSION['image'] : "default.png"; ?>
 <img src="<?=$_SESSION['image']?>" alt="">
 <a href = "?clear_image=true">clear Image</a>
     <form action="./theory_script.php" method="POST" enctype="multipart/form-data">
     <label> name<input type="text" name="name"></label><br>
     <label> surname<input type="text" name="surname"></name><br>
-    <input name="icon" type="file"><br>
+    <input name="icon" type="file" ><br>
     <button name = "action" value="upload">SUBMIT</button>
     </form>
 <br><textarea style = "width:50vw; height:30vh; margin-top:10px;" disabled>
 <?=$logs?>
 </textarea>
 <?php
-$images = scandir('./images/');
+$images = scandir('./images/'); // показывает все файлы и папки внутри указанной
 var_dump($images);
 array_shift($images);
 array_shift($images);
