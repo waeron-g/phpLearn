@@ -69,11 +69,6 @@ if ($_GET['name'] || $_GET['surname'] || $_GET['comment'])
     }
     header("Location: /day4/homework_Arthur.php");
 }
-else
-{
-    $id=$_GET['id1'];
-    header("Location: /day4/rename_script.php?id=$id");
-}
 }
 
 ?>
