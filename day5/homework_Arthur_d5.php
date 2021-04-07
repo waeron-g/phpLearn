@@ -14,6 +14,12 @@
  <label for=""><input name="comment" type="text" placeholder = "Комментарий"></label><br>
  <button name="action" value="add">Отправить комментарий</button>
  </form>
+<?
+ if ($_GET['error'])
+{
+    echo " <br>Ошибка. Заполните все поля <br>";
+}
+?>
 
  <br>
  <a href="./homework_Arthur_d5_script.php?createdb=create">Создать файл json</a>
@@ -47,7 +53,8 @@ if (file_exists("./json_homework.json"))
 {
 $json = file_get_contents("json_homework.json");
 $json = json_decode($json);
-
+if ($json)
+{
 foreach ($json as $row)
     {
         if ($_GET['search'] == "surname")
@@ -69,6 +76,8 @@ foreach ($json as $row)
         }
     }
 
+}
+else echo 'Файл JSON пустой, добавьте комментарии';
 }
 else echo 'Файла JSON не существует';
 

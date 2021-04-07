@@ -19,7 +19,7 @@ if ($_GET['name'] && $_GET['surname'] && $_GET['comment'] )
 }
 else if ($_GET['action'] == "add")
 {
-    header("Location: /day4/homework_Arthur_d5.php?error=1");
+    header("Location: /day5/homework_Arthur_d5.php?error=1");
 }
 }
 
