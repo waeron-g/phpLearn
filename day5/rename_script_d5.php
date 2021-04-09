@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -10,13 +9,13 @@
 <body>
 <? 
 $id=$_GET['id'];?>
-<form action='./homework_Arthur_script.php' method='GET'>
+<form action='./homework_Arthur_d5_script.php' method='GET'>
 <h1>Введите свои данные, которые хотите поправить</h1>
 <label  for=''><input name='name' type='text' placeholder = 'Имя'></label><br>
 <label for=''><input name='surname' type='text' placeholder = 'Фамилия'></label><br>
 <label for=''><input name='comment' type='text' placeholder = 'Комментарий'></label><br>
-<button name='id1' value='<?=$id?>'>Отправить комментарий</button><br>
+<label for=''><input name='id' type='text' value='<? echo $id ?>'></label><br>
+<button name='rename' value='switch'>Отправить комментарий</button><br>
 </form>
  </body>
 </html>
-

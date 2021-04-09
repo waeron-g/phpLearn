@@ -44,35 +44,38 @@ echo "Фильтр: $searh_surname<br>"
  <h2>Комментарии посетителей</h2>
 <?
 
-if ($_GET['error'])
-{
-    echo "Ошибка. Заполните все поля";
-}
 
 if (file_exists("./json_homework.json"))
 {
 $json = file_get_contents("json_homework.json");
 $json = json_decode($json);
+$i = 0;
 if ($json)
 {
-foreach ($json as $row)
+foreach ($json as $key => $row)
     {
+        $name = $row->NAME;
+        $surname = $row->SURNAME;
+        $comment = $row->COMMENT;
         if ($_GET['search'] == "surname")
         {
-            $name = $row->NAME;
-            $surname = $row->SURNAME;
-            $comment = $row->COMMENT;
             if ($searh_surname == $surname)
             {
-                echo "Имя: $name <br> Фамилия: $surname <br> Комментарий: $comment<br><a href='#'>Удалить запись</a><br><a href='#'>Редактировать запись</a><br><br> <br>";
+                echo "Имя: $name <br> Фамилия: $surname <br> Комментарий: $comment<br><a href=./homework_Arthur_d5_script.php?id=$key&action=delete'>Удалить запись</a><br><a href='./rename_script_d5.php?id=$key'>Редактировать запись</a><br><br><br>";
+                $i = $i + 1;
             }
         }
         else
         {
-            $name = $row->NAME;
-            $surname = $row->SURNAME;
-            $comment = $row->COMMENT;
-            echo "Имя: $name <br> Фамилия: $surname <br> Комментарий: $comment<br><a href='#'>Удалить запись</a><br><a href='#'>Редактировать запись</a><br><br> <br>";
+            echo "Имя: $name <br> Фамилия: $surname <br> Комментарий: $comment<br><a href='./homework_Arthur_d5_script.php?id=$key&action=delete'>Удалить запись</a><br><a href='./rename_script_d5.php?id=$key'>Редактировать запись</a><br><br><br>";
+        }
+
+    }
+    if ($_GET['search'] == "surname")
+    {
+    if ($i == 0)
+        {
+            echo "По фильтру: $searh_surname - ничего не найдено";
         }
     }
 
