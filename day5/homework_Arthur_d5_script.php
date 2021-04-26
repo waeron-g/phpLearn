@@ -92,7 +92,6 @@ if ($_GET['rename'] == "switch")
     {
         if ($key == $id)
         {
-
             if ($name) $row->NAME = $name;
             if ($surname) $row->SURNAME = $surname;
             if ($comment) $row->COMMENT = $comment;
