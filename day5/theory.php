@@ -35,6 +35,7 @@ $json[] = json_decode ('{
     "OBJECT" : "WTF",
     "SECOND ATTR" : "COOL"
 }'); // Создаем объект JSON в виде строки и декодируем, после чего записываем в объект
+var_dump($json);
 echo "<H1> ELEMENT OF JSON</H1>";
 var_dump($json[0]->group->code);
 $json = json_encode($json); // Раскодируем объект в строку
@@ -44,10 +45,10 @@ fwrite($json_write, $json); // Записываем JSON в массив
 fclose($json_write); // Закрываем
 $json = json_decode(file_get_contents("Json1.json")); // Выводим записанные данные
 var_dump($json);
-$site = file_get_contents("https://www.php.net/manual/ru/function.fopen.php");
-$site = mb_substr($site, mb_strpos($site, "<body") );
-$site = explode("<p>", $site);
-var_dump($site);
+// $site = file_get_contents("https://www.php.net/manual/ru/function.fopen.php");
+// $site = mb_substr($site, mb_strpos($site, "<body") );
+// $site = explode("<p>", $site);
+// var_dump($site);
 
 
 /**
