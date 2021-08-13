@@ -21,9 +21,11 @@ class bar
 
 class foo extends bar
 {
-    public function fro($string)
+    public $test = "";
+
+    public function fro()
     {
-        var_dump($this->faz($string));
+        var_dump($this->faz($this->test));
     }
 
 }
@@ -51,6 +53,8 @@ $pup("TEST ME");
 $foo = new foo();
 $bar = new bar();
 
+$foo->test = "WTF";
+
 $bar->bor("TEST BAR CLASS WITH BOR FUNCTION");
 $foo->bor("TEST FOO CLASS WITH BOR FUNCTION");
 
@@ -69,9 +73,10 @@ function lose()
 
 lose();
 
-function add($a, $b)
+function add($a, $b = 28)
 {
-    return $a + $b;
+    $a = $a + $b;
+    return $a;
 }
 
 function multiple($a, $b)
@@ -80,13 +85,21 @@ function multiple($a, $b)
 }
 
 $action = "add";
+$a = 23;
+$sum = $action($a, 8);
+echo "<br>".$sum."<br>".$a;
 
-function doAction($a, $b, $action)
+function doAction($b, $c, $action)
 {
-   return $action($a, $b);
+    $a = 23;
+   return $action($b, $c);
 }
 
 var_dump(doAction(3,2, $action));
 
 $action = "multiple";
 var_dump(doAction(3,2, $action));
+
+
+
+
